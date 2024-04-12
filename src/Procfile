@@ -1,0 +1,2 @@
+scaletozeroaotweb: /app/Arshu.ScaleToZeroAotWeb --urls "http://0.0.0.0:8080;http://0.0.0.0:9091"
+

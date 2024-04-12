@@ -1,0 +1,39 @@
+app = "scaletozeroaotweb"
+
+kill_signal = "SIGINT"
+kill_timeout = 5
+swap_size_mb = 512
+
+[env]
+#  LOG_LEVEL = "debug"
+
+[checks]
+    [checks.scaletozeroaotweb_http_check]
+        grace_period = "30s"
+        interval = "15s"
+        method = "get"
+        path = "/"
+        port = 8080
+        timeout = "10s"
+        type = "http"
+
+[http_service]
+    internal_port = 8080
+    force_https = false
+    auto_stop_machines = true
+    auto_start_machines = true
+    min_machines_running = 0
+
+    [http_service.concurrency]
+        type = "requests"
+        soft_limit = 20
+        hard_limit = 25
+
+    [http_service.http_options]
+        h2_backend = true
+
+    [http_service.tls_options]
+        alpn = ["h2", "http/1.1"]
+        versions = ["TLSv1.2", "TLSv1.3"]
+        default_self_signed = false
+

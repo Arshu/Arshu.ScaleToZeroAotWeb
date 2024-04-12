@@ -1,0 +1,16 @@
+﻿FROM registry.fly.io/scaletozeroaotweb:latest
+LABEL Author="Sridharan Srinivasan" 
+
+WORKDIR /app
+COPY ./wwwroot/ /app/wwwroot/
+COPY ./Readme.md /app/Readme.md
+
+EXPOSE 8080
+EXPOSE 9091
+
+#CMD ["/app/Arshu.ScaleToZeroAotWeb", "--urls", "http://0.0.0.0:8080;http://0.0.0.0:9091"]
+
+#"-N", "--any-can-die",
+CMD ["/usr/bin/overmind", "start", "-f", "/app/Procfile"]
+
+

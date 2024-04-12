@@ -1,4 +1,4 @@
-# Open Source Scale To Zero NativeAot Application Shell for Static Web Hosting in fly.io cheaply
+# Open Source Scale To Zero NativeAot App Shell for Static Web Hosting in fly.io cheaply
 
 ## Main Features
 
