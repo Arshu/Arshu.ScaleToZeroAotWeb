@@ -29,6 +29,7 @@ Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro
 #### Main : https://scaletozeroaotweb.fly.dev/Index.html
 
 # Getting Started
+## Prereqisite Install flyctl from https://fly.io for your respective environment
 
 ## Running Locally
 Clone the repo and run the appropriate **Arshu.ScaleToZeroAotWeb** asp.net core project for the respective platform
