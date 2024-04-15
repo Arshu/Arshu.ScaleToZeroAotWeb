@@ -1,35 +1,42 @@
-# Open Source Scale To Zero NativeAot App Shell for Static Web Hosting in fly.io cheaply
+# Scale to Zero App Shell for Static Web Hosting in fly.io
 
-## Main Features
+## What?
+    It is a Native Aot Scale to Zero Application Shell for Web Hosting of Static Content in fly.io
 
-## AutoShutdown Serverless Deployment in fly.io Machines
-Can be deployed in fly.io machines across all regions but charged based on actual usage since the runtime will auto shutdown after a idle time of 10 seconds
+## Why?
+    Pay for Hosting based on Actual Usage of Resources rather than for subscription of Resources
+
+## Links
+
+###### Github Link https://github.com/Arshu/Arshu.ScaleToZeroAotWeb of the AotWeb Open Source MIT Licensed Repository 
+
+###### Fly Link https://scaletozeroaotweb.fly.dev of the Hosted Scale To Zero App to show Readme.md Page on root access of domain
+
+###### Fly Link https://scaletozeroaotweb.fly.dev/index.html of the Hosted Scale To Zero App to show Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
+
+## Related Links
+
+###### Github Link https://github.com/Arshu/Arshu.StaticWeb of the StaticWeb Repository for Self Hosting with Additional Features
+
+###### Fly Link https://staticweb.fly.dev of the Hosted Scale To Zero App Static Web with Additional Features
+
+## Important features which the App Shell provides for hosting Static Content
+
+### Auto Shutdown MicroVM fly.io Machines
+Can be deployed in fly.io machines across all regions and configured to auto shutdown after a idle time of 10 seconds if have no requests
 Configure using Environment Variable --env INITIAL_TIME_IN_SEC="10" --env IDLE_TIME_IN_SEC="10"
 
-## View Server Instance Information
-Will echo information about the web instance on querying using /Echo
+### View Server Instance Information
+Can view information about the web instance on querying using /Echo
 
-## Access Other Region Instance
-If hosted in multiple regions, can use ?region=sin querystring to replay to the instance in the specified region
+### Access Other Region Instance (If Hosted in Multiple Regions)
+Can use ?region=sin querystring to replay to the instance in the specified region
 
-## View Server Performance on Cold Start/Warm Start
-Can check the performance of the instance in fly.io logs
+### View Server Performance on Cold Start/Warm Start
+Can view the performance log metrics of the instance in fly.io logs
 
-# Related Projects
-
-## Comming Soon : Open Source Scale to Zero Native Aot Api Shell for Static Api Hosting in fly.io cheaply with Swagger
-## Comming Soon : Open Source Frontend using Declarative UI with Affordable Self Hostable Backend App Shell with Performance Measurement for Static Web/Api/App Hosting and Fly Management Utilities
-
-# Online Demo
-
-Readme.md Page on root access of domain
-#### Main : https://scaletozeroaotweb.fly.dev
-
-Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
-#### Main : https://scaletozeroaotweb.fly.dev/Index.html
-
-# Getting Started
-## Prereqisite Install flyctl from https://fly.io for your respective environment
+## Getting Started
+#### Prereqisite Install flyctl from https://fly.io for your respective environment
 
 ## Running Locally
 Clone the repo and run the appropriate **Arshu.ScaleToZeroAotWeb** asp.net core project for the respective platform
@@ -45,9 +52,9 @@ Fly.io provides free/paid options which should be more than sufficient to host a
 
 #### Prerequisite is Install the <a href=https://fly.io/docs/hands-on/install-flyctl/>Fly Command Line</a> Program from fly site and login using the fly command line program using fly auth login
 
-# Uses Fly Machines and not Fly Apps
-### Replace [appname] with your own app name
-### Replace [orgname] with your own org name eg. personal
+## Uses Fly Machines and not Fly Apps
+#### Replace [appname] with your own app name
+#### Replace [orgname] with your own org name eg. personal
 
 <pre>
 
@@ -85,10 +92,10 @@ flyctl machine destroy [machineID] --force
 
 </pre>
 
-# Hosting your own Content
+## Hosting your own Content
 
-## Replace the wwwfolder with your own static web content.
-	eg. For Compatible Astro Projects, copy the dist folder on create using npm run build
+#### Replace the wwwfolder with your own static web content.
+eg. For Compatible Astro Projects, copy the dist folder on create using npm run build
 
 ## Comment out the following lines in program.cs to Stop showing this Readme
 

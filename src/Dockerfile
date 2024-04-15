@@ -36,7 +36,7 @@ COPY --from=build /app/Arshu.ScaleToZeroAotWeb /app/appsettings.json .
 WORKDIR /app
 COPY --from=build /source/Procfile .
 COPY ./wwwroot/ /app/wwwroot/
-COPY ./Readme.md ./ReadmeStyle.css ./ReadmeTemplate.html  /app/
+COPY ./Readme.md ./ReadmeStyle.css ./ReadmeLink.html ./ReadmeTemplate.html  /app/
 
 EXPOSE 8080
 EXPOSE 9091

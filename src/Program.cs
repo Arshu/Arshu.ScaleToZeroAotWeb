@@ -180,13 +180,18 @@ namespace Arshu.ScaleToZeroAotWeb
             string readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle");
             if (String.IsNullOrEmpty(readmeHtml) == false)
             {
-                app.MapGet("/", async (HttpContext httpContext, CancellationToken ct) =>
+                app.Use(async (context, next) =>
                 {
-                    readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle");
-                    return TypedResults.Content(content: readmeHtml,
-                      contentType: "text/html",
-                      statusCode: (int?)HttpStatusCode.OK);
+                    await MarkdownUtil.ModifyResponse(context, next, RootDirPath, "ReadmeLink");
                 });
+
+                //app.MapGet("/", async (HttpContext httpContext, CancellationToken ct) =>
+                //{
+                //    readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle");
+                //    return TypedResults.Content(content: readmeHtml,
+                //      contentType: "text/html",
+                //      statusCode: (int?)HttpStatusCode.OK);
+                //});
 
                 app.MapGet("/Readme", async (HttpContext httpContext, CancellationToken ct) =>
                 {
@@ -221,7 +226,7 @@ namespace Arshu.ScaleToZeroAotWeb
             AppLogger.WriteLog(message);
         }
 
-        #endregion
+        #endregion        
     }
 
     //https://stackoverflow.com/questions/50096995/make-asp-net-core-server-kestrel-case-sensitive-on-windows
