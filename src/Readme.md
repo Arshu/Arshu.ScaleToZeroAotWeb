@@ -1,32 +1,39 @@
-# Open Source Scale To Zero NativeAot App Shell for Static Web Hosting in fly.io cheaply
+# Scale to Zero App Shell for Static Web Hosting in fly.io
 
-## Main Features
+## What?
+    It is a Native Aot Scale to Zero Application Shell for Web Hosting of Static Content in fly.io
 
-### AutoShutdown Serverless Deployment in fly.io Machines
-Can be deployed in fly.io machines across all regions but charged based on actual usage since the runtime will auto shutdown after a idle time of 10 seconds
+## Why?
+    Pay for Hosting based on Actual Usage of Resources rather than for subscription of Resources
+
+## Links
+
+###### Github Link https://github.com/Arshu/Arshu.ScaleToZeroAotWeb of the AotWeb Open Source MIT Licensed Repository 
+
+###### Fly Link https://scaletozeroaotweb.fly.dev of the Hosted Scale To Zero App to show Readme.md Page on root access of domain
+
+###### Fly Link https://scaletozeroaotweb.fly.dev/index.html of the Hosted Scale To Zero App to show Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
+
+## Related Links
+
+###### Github Link https://github.com/Arshu/Arshu.StaticWeb of the StaticWeb Repository for Self Hosting with Additional Features
+
+###### Fly Link https://staticweb.fly.dev of the Hosted Scale To Zero App Static Web with Additional Features
+
+## Important features which the App Shell provides for hosting Static Content
+
+### Auto Shutdown MicroVM fly.io Machines
+Can be deployed in fly.io machines across all regions and configured to auto shutdown after a idle time of 10 seconds if have no requests
 Configure using Environment Variable --env INITIAL_TIME_IN_SEC="10" --env IDLE_TIME_IN_SEC="10"
 
 ### View Server Instance Information
-Will echo information about the web instance on querying using /Echo
+Can view information about the web instance on querying using /Echo
 
-### Access Other Region Instance
-If hosted in multiple regions, can use ?region=sin querystring to replay to the instance in the specified region
+### Access Other Region Instance (If Hosted in Multiple Regions)
+Can use ?region=sin querystring to replay to the instance in the specified region
 
 ### View Server Performance on Cold Start/Warm Start
-Can check the performance of the instance in fly.io logs
-
-## Related Projects
-
-#### <i>Comming Soon</i>: Open Source Scale to Zero Native Aot Api Shell for Static Api Hosting in fly.io cheaply with Swagger
-#### <i>Comming Soon</i>: Open Source Frontend using Declarative UI with Affordable Self Hostable Backend App Shell with Performance Measurement for Static Web/Api/App Hosting and Fly Management Utilities
-
-## Online Demo
-
-Readme.md Page on root access of domain
-#### Main : https://scaletozeroaotweb.fly.dev
-
-Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
-#### Main : https://scaletozeroaotweb.fly.dev/Index.html
+Can view the performance log metrics of the instance in fly.io logs
 
 ## Getting Started
 #### Prereqisite Install flyctl from https://fly.io for your respective environment
