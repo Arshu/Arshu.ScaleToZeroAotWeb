@@ -2,25 +2,25 @@
 
 ## Main Features
 
-## AutoShutdown Serverless Deployment in fly.io Machines
+### AutoShutdown Serverless Deployment in fly.io Machines
 Can be deployed in fly.io machines across all regions but charged based on actual usage since the runtime will auto shutdown after a idle time of 10 seconds
 Configure using Environment Variable --env INITIAL_TIME_IN_SEC="10" --env IDLE_TIME_IN_SEC="10"
 
-## View Server Instance Information
+### View Server Instance Information
 Will echo information about the web instance on querying using /Echo
 
-## Access Other Region Instance
+### Access Other Region Instance
 If hosted in multiple regions, can use ?region=sin querystring to replay to the instance in the specified region
 
-## View Server Performance on Cold Start/Warm Start
+### View Server Performance on Cold Start/Warm Start
 Can check the performance of the instance in fly.io logs
 
-# Related Projects
+## Related Projects
 
-## Comming Soon : Open Source Scale to Zero Native Aot Api Shell for Static Api Hosting in fly.io cheaply with Swagger
-## Comming Soon : Open Source Frontend using Declarative UI with Affordable Self Hostable Backend App Shell with Performance Measurement for Static Web/Api/App Hosting and Fly Management Utilities
+#### <i>Comming Soon</i>: Open Source Scale to Zero Native Aot Api Shell for Static Api Hosting in fly.io cheaply with Swagger
+#### <i>Comming Soon</i>: Open Source Frontend using Declarative UI with Affordable Self Hostable Backend App Shell with Performance Measurement for Static Web/Api/App Hosting and Fly Management Utilities
 
-# Online Demo
+## Online Demo
 
 Readme.md Page on root access of domain
 #### Main : https://scaletozeroaotweb.fly.dev
@@ -28,8 +28,8 @@ Readme.md Page on root access of domain
 Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
 #### Main : https://scaletozeroaotweb.fly.dev/Index.html
 
-# Getting Started
-## Prereqisite Install flyctl from https://fly.io for your respective environment
+## Getting Started
+#### Prereqisite Install flyctl from https://fly.io for your respective environment
 
 ## Running Locally
 Clone the repo and run the appropriate **Arshu.ScaleToZeroAotWeb** asp.net core project for the respective platform
@@ -45,9 +45,9 @@ Fly.io provides free/paid options which should be more than sufficient to host a
 
 #### Prerequisite is Install the <a href=https://fly.io/docs/hands-on/install-flyctl/>Fly Command Line</a> Program from fly site and login using the fly command line program using fly auth login
 
-# Uses Fly Machines and not Fly Apps
-### Replace [appname] with your own app name
-### Replace [orgname] with your own org name eg. personal
+## Uses Fly Machines and not Fly Apps
+#### Replace [appname] with your own app name
+#### Replace [orgname] with your own org name eg. personal
 
 <pre>
 
@@ -85,10 +85,10 @@ flyctl machine destroy [machineID] --force
 
 </pre>
 
-# Hosting your own Content
+## Hosting your own Content
 
-## Replace the wwwfolder with your own static web content.
-	eg. For Compatible Astro Projects, copy the dist folder on create using npm run build
+#### Replace the wwwfolder with your own static web content.
+eg. For Compatible Astro Projects, copy the dist folder on create using npm run build
 
 ## Comment out the following lines in program.cs to Stop showing this Readme
 
