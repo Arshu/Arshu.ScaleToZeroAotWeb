@@ -10,9 +10,10 @@ namespace Arshu.App
 {
     public class MarkdownUtil
     {
-        private static bool ReloadMarkdownAlways = false;
+        private static bool ReloadMarkdownAlways = true;
         private static bool ReloadHtmlAlways = true;
-        private static bool ReloadCssAlways = false;
+        private static bool ReloadCssAlways = true;
+        private static bool ReloadFileAlways = false;
 
         private static string SiteTitle = "Hosting App Shell";
         private static string SiteDescription = "Application Shell for Scale To ZeroServerless Multi Region Hosting of Static Web App";
@@ -21,7 +22,64 @@ namespace Arshu.App
         private static Dictionary<string, FileInfo[]> _markdownFilesList = new Dictionary<string, FileInfo[]>();
         private static Dictionary<string, FileInfo[]> _htmlFilesList = new Dictionary<string, FileInfo[]>();
         private static Dictionary<string, FileInfo[]> _cssFilesList = new Dictionary<string, FileInfo[]>();
-        
+
+        private static Dictionary<string, FileInfo[]> _filesList = new Dictionary<string, FileInfo[]>();
+        public static byte[] GetFileBytes(string dirPath, string partialFileName, string fileSearchPattern)
+        {
+            byte[] fileContent = { };
+
+            #region Retrieve and Cache File List
+
+            FileInfo[] files = { };
+            if ((_filesList.ContainsKey(dirPath) == false) || (ReloadFileAlways == true))
+            {
+                DirectoryInfo rootDirInfo = new DirectoryInfo(dirPath);
+                files = rootDirInfo.GetFiles(fileSearchPattern, SearchOption.AllDirectories);
+
+                if (_filesList.ContainsKey(dirPath) == true)
+                {
+                    _filesList.Remove(dirPath);
+                }
+                //Cache  the File LIst
+                _filesList.Add(dirPath, files);
+            }
+            else
+            {
+                files = _filesList[dirPath];
+            }
+
+            #endregion
+
+            #region Retrieve File Content in Bytes
+
+            if (files.Length > 0)
+            {
+                string fileExtension = fileSearchPattern.Replace("*", "");
+                foreach (var itemFileInfo in files)
+                {
+                    if ((itemFileInfo.Name.Contains(partialFileName, StringComparison.OrdinalIgnoreCase) == true)
+                           && (itemFileInfo.Name.EndsWith(fileExtension, StringComparison.OrdinalIgnoreCase) == true)
+                        )
+                    {
+                        string filePath = itemFileInfo.FullName;
+                        if (File.Exists(filePath) == true)
+                        {
+                            byte[] fileBytes = File.ReadAllBytes(filePath);
+                            if (fileBytes.Length > 0)
+                            {
+                                fileContent = fileBytes;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+
+            #endregion
+
+            return fileContent;
+        }
+
         public static async Task<string> GetHtmlFromMarkdown(string dirPath, string markdownPartialFileName, string htmlPartialFileName, string cssPartialFileName)
         {
             #region Retrieve and Cache Markdown File List
@@ -228,7 +286,7 @@ namespace Arshu.App
             string url = context.Request.Path;
 
             if ((url == "/") 
-                || (url.Contains("Readme", StringComparison.OrdinalIgnoreCase) == true)
+                || (url.EndsWith("Readme", StringComparison.OrdinalIgnoreCase) == true)
                 || (url.Contains("/Index.html", StringComparison.OrdinalIgnoreCase) == true)
                 )
             {
@@ -321,20 +379,20 @@ namespace Arshu.App
                                 {
                                     string appendAfterBodyHtml = injectHtml;
                                     responseBody = responseBody.Insert(idxOfBodyStartEnd + 1, Environment.NewLine + appendAfterBodyHtml);
+
+                                    using (var newStream = new MemoryStream())
+                                    {
+                                        var sw = new StreamWriter(newStream);
+                                        sw.Write(responseBody);
+                                        sw.Flush();
+
+                                        newStream.Seek(0, SeekOrigin.Begin);
+
+                                        await newStream.CopyToAsync(bodyStream);
+                                    }
                                 }
-                            }
-
-                            using (var newStream = new MemoryStream())
-                            {
-                                var sw = new StreamWriter(newStream);
-                                sw.Write(responseBody);
-                                sw.Flush();
-
-                                newStream.Seek(0, SeekOrigin.Begin);
-
-                                await newStream.CopyToAsync(bodyStream);
-                            }
-                        }
+                            }                            
+                        }                        
                         finally
                         {
                             context.Response.Body = bodyStream;

@@ -4,6 +4,7 @@ using Markdig;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.FileProviders.Physical;
@@ -182,23 +183,29 @@ namespace Arshu.ScaleToZeroAotWeb
             {
                 app.Use(async (context, next) =>
                 {
-                    await MarkdownUtil.ModifyResponse(context, next, RootDirPath, "ReadmeLink");
+                    await MarkdownUtil.ModifyResponse(context, next, RootDirPath, "ReadmeLink").ConfigureAwait(false);
                 });
-
-                //app.MapGet("/", async (HttpContext httpContext, CancellationToken ct) =>
-                //{
-                //    readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle");
-                //    return TypedResults.Content(content: readmeHtml,
-                //      contentType: "text/html",
-                //      statusCode: (int?)HttpStatusCode.OK);
-                //});
 
                 app.MapGet("/Readme", async (HttpContext httpContext, CancellationToken ct) =>
                 {
-                    readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle");
+                    readmeHtml = await MarkdownUtil.GetHtmlFromMarkdown(RootDirPath, "Readme", "ReadmeTemplate", "ReadmeStyle").ConfigureAwait(false);
                     return TypedResults.Content(content: readmeHtml,
-                      contentType: "text/html",
-                      statusCode: (int?)HttpStatusCode.OK);
+                        contentType: "text/html",
+                        statusCode: (int?)HttpStatusCode.OK);
+                });
+
+                app.MapGet("/Screenshots/{ImagePath}", (HttpContext httpContext, string imagePath, CancellationToken ct) =>
+                {
+                    byte[] fileBytes = MarkdownUtil.GetFileBytes(RootDirPath, imagePath, "*.png");
+                    if (fileBytes.Length > 0)
+                    {
+                        MemoryStream stream = new MemoryStream(fileBytes);
+                        return Results.Stream(stream, "image/png");
+                    }
+                    else
+                    {
+                        return Results.NotFound();
+                    }
                 });
             }
 
