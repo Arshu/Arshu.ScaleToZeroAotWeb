@@ -1,24 +1,29 @@
 # Scale to Zero App Shell for Static Web Hosting in fly.io
 
 ## What?
-    It is a Native Aot Scale to Zero Application Shell for Web Hosting of Static Content in fly.io
+
+> It is a Native Aot Scale to Zero Application Shell for Web Hosting of Static Content in fly.io
 
 ## Why?
-    Pay for Hosting based on Actual Usage of Resources rather than for subscription of Resources
+> Pay for Hosting based on Actual Usage of Resources rather than for subscription of Resources
+
+## Scale to Zero Performance
+
+> Fly Log showing Scale to Performance on start of less than 50 Millisecond
+
+<img src="Screenshots/ReadmeFlyLog.png" alt="Fly Code Start" title="Fly Code Start Performance" width="100%"/> 
 
 ## Links
 
-###### Github Link https://github.com/Arshu/Arshu.ScaleToZeroAotWeb of the AotWeb Open Source MIT Licensed Repository 
+###### Github [Repository Link](https://github.com/Arshu/Arshu.ScaleToZeroAotWeb) of the AotWeb Open Source MIT Licensed Repository 
 
-###### Fly Link https://scaletozeroaotweb.fly.dev of the Hosted Scale To Zero App to show Readme.md Page on root access of domain
-
-###### Fly Link https://scaletozeroaotweb.fly.dev/index.html of the Hosted Scale To Zero App to show Index.html Page of the Published Astro Web Site (https://github.com/Charca/astro-blog-template) copied to wwwroot
+###### Fly [Hosted App Link](https://scaletozeroaotweb.fly.dev) of the Hosted Scale To Zero App Shell to show the [Published Astro Blog Template](https://github.com/Charca/astro-blog-template) copied to wwwroot
 
 ## Related Links
 
-###### Github Link https://github.com/Arshu/Arshu.StaticWeb of the StaticWeb Repository for Self Hosting with Additional Features
+###### Github [Repository Link](https://github.com/Arshu/Arshu.StaticWeb) of the StaticWeb Repository for Self Hosting with Additional Features
 
-###### Fly Link https://staticweb.fly.dev of the Hosted Scale To Zero App Static Web with Additional Features
+###### Fly [Hosted App Link](https://staticweb.fly.dev) of the Hosted Scale To Zero App Static Web with Additional Features
 
 ## Important features which the App Shell provides for hosting Static Content
 
