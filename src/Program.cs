@@ -194,7 +194,7 @@ namespace Arshu.ScaleToZeroAotWeb
                         statusCode: (int?)HttpStatusCode.OK);
                 });
 
-                app.MapGet("/Screenshots/{ImagePath}", (HttpContext httpContext, string imagePath, CancellationToken ct) =>
+                app.MapGet("/Resource/{ImagePath}", (HttpContext httpContext, string imagePath, CancellationToken ct) =>
                 {
                     byte[] fileBytes = MarkdownUtil.GetFileBytes(RootDirPath, imagePath, "*.png");
                     if (fileBytes.Length > 0)
