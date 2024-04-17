@@ -183,7 +183,7 @@ namespace Arshu.ScaleToZeroAotWeb
             {
                 app.Use(async (context, next) =>
                 {
-                    await MarkdownUtil.ModifyResponse(context, next, RootDirPath, "ReadmeLink").ConfigureAwait(false);
+                    await MarkdownUtil.ModifyResponse(context, next, RootDirPath, "ReadmeLink", "Scale to Zero AppShell Readme").ConfigureAwait(false);
                 });
 
                 app.MapGet("/Readme", async (HttpContext httpContext, CancellationToken ct) =>

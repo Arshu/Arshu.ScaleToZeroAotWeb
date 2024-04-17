@@ -16,7 +16,7 @@ namespace Arshu.App
         private static bool ReloadFileAlways = false;
 
         private static string SiteTitle = "Hosting App Shell";
-        private static string SiteDescription = "Application Shell for Scale To ZeroServerless Multi Region Hosting of Static Web App";
+        private static string SiteDescription = "Application Shell for Scale To Zero Serverless Multi Region Hosting of Static Web App";
         private static string SiteAuthor = "Sridharan Srinivasan";
         private static MarkdownPipeline _pipeline = new MarkdownPipelineBuilder().UseAdvancedExtensions().Build();
         private static Dictionary<string, FileInfo[]> _markdownFilesList = new Dictionary<string, FileInfo[]>();
@@ -281,9 +281,10 @@ namespace Arshu.App
             return htmlPageContent;
         }
 
-        public static async Task ModifyResponse(HttpContext context, Func<Task> next, string dirPath, string htmlPartialFileName)
+        public static async Task ModifyResponse(HttpContext context, Func<Task> next, string dirPath, string htmlPartialFileName, string readmeLinkTitle)
         {
             string url = context.Request.Path;
+            if (string.IsNullOrEmpty(readmeLinkTitle) == true) readmeLinkTitle = "Readme";
 
             if ((url == "/") 
                 || (url.EndsWith("Readme", StringComparison.OrdinalIgnoreCase) == true)
@@ -349,7 +350,7 @@ namespace Arshu.App
                     else
                     {
                         injectHtml = injectHtml.Replace("{{$LinkUrl}}", "/Readme");
-                        injectHtml = injectHtml.Replace("{{$LinkText}}", "Scale To Zero App Shell Readme");
+                        injectHtml = injectHtml.Replace("{{$LinkText}}", readmeLinkTitle);
                     }
 
                     #region Capture and Modify Response Stream

@@ -84,12 +84,14 @@ flyctl machine run registry.fly.io/[appname]:latest --name [appname]-sin-1 --reg
 Repeat Step 5 for each region you want to deploy the app
 
 Update Step 6
-After every change in the src deploy the docker image to Fly Docker Registry and Update 
+After every change in the src deploy the docker image to Fly Docker Registry and Update the Machine
 flyctl deploy --dockerfile Dockerfile --build-only --remote-only --push --image-label latest -a [appname]
-Retrive the Machine ID
-flyctl machine list --app [appname]
 Update the Machine
 flyctl machine update [machineID] --image registry.fly.io/[appname]:latest --port 443:8080/tcp:tls --port 80:8080/tcp:http --env INITIAL_TIME_IN_SEC="150" --env IDLE_TIME_IN_SEC="150" --config fly.toml --app [appname]
+
+Optional Steps
+Retrive the Machine ID
+flyctl machine list --app [appname]
 Stop the Machine
 flyctl machine stop [machineID]
 Destroy the Machine
@@ -102,14 +104,4 @@ flyctl machine destroy [machineID] --force
 #### Replace the wwwfolder with your own static web content.
 eg. For Compatible Astro Projects, copy the dist folder on create using npm run build
 
-## Comment out the following lines in program.cs to Stop showing this Readme
-
-<pre>
-
-    app.MapGet("/", (HttpContext httpContext, CancellationToken ct) => {
-        return TypedResults.Content(content: readmeHtml,
-            contentType: "text/html",
-            statusCode: (int?)HttpStatusCode.OK);
-    });
-
-</pre>
+## Comment out the Readme Enpoing lines in program.cs to Stop showing this Readme
